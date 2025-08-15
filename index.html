@@ -1,68 +1,356 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sterling Standard Cleaning LLC | Gilbert AZ Cleaning Services</title>
-  <meta name="description" content="Sterling Standard Cleaning LLC — residential, move-in/move-out, and Airbnb cleaning in Gilbert, Chandler, and Mesa.">
-  <meta name="theme-color" content="#0F3D2E">
-  <link rel="icon" href="logo.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sterling Standard Cleaning LLC</title>
+  <meta name="description" content="Sterling Standard Cleaning LLC — sparkling residential & commercial cleaning in the East Valley. Meticulous. Reliable. Sterling clean." />
+  <meta name="theme-color" content="#e6fbff" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fraunces:opsz,wght@9..144,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: 'Inter', sans-serif; margin:0; background:#F6F2EA; color:#0F3D2E; }
-    header { background:#fff; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 5px rgba(0,0,0,0.05); }
-    header h1 { font-family: 'Fraunces', serif; font-size:1.5rem; margin:0; }
-    nav a { margin-left:1rem; color:#0F3D2E; text-decoration:none; font-weight:600; }
-    .hero { display:grid; grid-template-columns:1fr 1fr; gap:2rem; padding:2rem; }
-    .hero h2 { font-family: 'Fraunces', serif; font-size:2.5rem; margin-top:0; }
-    .section { padding:2rem; }
-    .card { background:#fff; border-radius:12px; padding:1.5rem; box-shadow:0 5px 15px rgba(0,0,0,0.05); }
-    footer { background:#0F3D2E; color:#fff; padding:2rem; text-align:center; }
+    :root{
+      --ink:#0c1a1f;
+      --mint:#a7f3d0;
+      --aqua:#7ae6ff;
+      --sky:#e6fbff;
+      --steel:#8aa2b0;
+      --brand:#2ac5e0;
+      --white:#ffffff;
+      --shadow:rgba(13,25,31,.12);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;scroll-behavior:smooth}
+    body{
+      margin:0;color:var(--ink);background:linear-gradient(180deg,var(--sky),#fff 60%);
+      font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    }
+
+    /* ---------- Global UI ---------- */
+    .container{width:min(1150px,92vw);margin-inline:auto}
+    .btn{display:inline-block;padding:.9rem 1.2rem;border-radius:14px;font-weight:700;text-decoration:none;background:var(--brand);color:#001418;box-shadow:0 10px 20px var(--shadow);transition:transform .2s ease, filter .2s ease}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+    .btn.outline{background:transparent;border:2px solid var(--brand);color:var(--ink)}
+    section{padding:80px 0}
+
+    /* ---------- Sticky Nav ---------- */
+    header{position:fixed;inset:0 0 auto;z-index:50;backdrop-filter:saturate(140%) blur(8px);}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 4vw;transition:box-shadow .3s ease, background .3s ease}
+    .nav.scrolled{background:rgba(255,255,255,.75);box-shadow:0 6px 30px -12px var(--shadow)}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.25px}
+    .brand .logo{width:36px;height:36px;border-radius:50%;background:radial-gradient(120% 120% at 30% 30%,var(--aqua),var(--mint) 60%, #dff 100%);position:relative;box-shadow:inset 0 0 0 3px rgba(255,255,255,.6), 0 6px 18px var(--shadow)}
+    .brand span{font-weight:800}
+    nav a{margin-left:22px;text-decoration:none;color:var(--ink);font-weight:600}
+    nav a:hover{opacity:.8}
+
+    /* ---------- Parallax Hero ---------- */
+    .hero{position:relative;min-height:92vh;display:grid;place-items:center;overflow:hidden}
+    .layer{position:absolute;inset:0;will-change:transform;pointer-events:none}
+    .hero-bg{background:radial-gradient(80% 60% at 50% 20%, #fff, var(--sky));}
+    .bubbles{background-image:radial-gradient(circle at 10% 20%, rgba(255,255,255,.9) 0 8px, transparent 9px),
+              radial-gradient(circle at 80% 30%, rgba(255,255,255,.9) 0 6px, transparent 7px),
+              radial-gradient(circle at 40% 70%, rgba(255,255,255,.9) 0 10px, transparent 11px),
+              radial-gradient(circle at 65% 80%, rgba(255,255,255,.85) 0 7px, transparent 8px);
+             background-repeat:no-repeat;animation:float 16s linear infinite;mask-image:linear-gradient(180deg, transparent 0%, black 35%)}
+    @keyframes float{from{background-position:10% 110%, 80% 120%, 40% 130%, 65% 140%}
+                     to{background-position:10% -20%, 80% -30%, 40% -40%, 65% -50%}}
+
+    /* Dust/grime overlay that fades away as you scroll */
+    .grime{mix-blend-mode:multiply;background:
+      radial-gradient(60px 30px at 20% 70%, rgba(160,160,160,.25), transparent 70%),
+      radial-gradient(30px 16px at 60% 60%, rgba(100,100,100,.18), transparent 70%),
+      radial-gradient(50px 22px at 80% 40%, rgba(120,120,120,.17), transparent 70%),
+      radial-gradient(80px 44px at 30% 40%, rgba(80,80,80,.18), transparent 70%);
+      filter:grayscale(.5) contrast(1.1);
+      transition:opacity .5s ease;
+    }
+
+    /* NEW: Dirt overlay along bottom that recedes each viewport as you scroll */
+    .dirtOverlay{position:fixed;left:0;right:0;bottom:0;height:45vh;pointer-events:none;z-index:40;opacity:.9;mix-blend-mode:multiply;
+      background:
+        radial-gradient(24px 10px at 10% 92%, rgba(90,60,30,.28), transparent 70%),
+        radial-gradient(30px 12px at 35% 96%, rgba(110,80,50,.22), transparent 70%),
+        radial-gradient(22px 9px at 70% 94%, rgba(120,90,60,.2), transparent 70%),
+        radial-gradient(40px 16px at 88% 98%, rgba(80,60,40,.22), transparent 70%),
+        linear-gradient(0deg, rgba(96,72,48,.42), rgba(96,72,48,.0) 60%);
+      filter:contrast(1.05) saturate(1.05);
+      transition:height .2s ease, opacity .2s ease;
+    }
+
+    .hero .content{position:relative;z-index:2;text-align:center;padding:0 6vw}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(42,197,224,.25);border-radius:999px;padding:6px 12px;font-weight:700;color:#096;
+      background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65));
+      box-shadow:0 10px 20px var(--shadow)}
+
+    .title{font-family:"Playfair Display",serif;font-size:clamp(32px,6vw,64px);line-height:1.05;margin:18px 0;position:relative}
+    .title .shine{position:relative;display:inline-block}
+    .title .shine::after{content:"";position:absolute;inset:0;transform:skewX(-20deg) translateX(-140%);
+      background:linear-gradient(90deg,transparent, rgba(255,255,255,.0), rgba(255,255,255,.6), rgba(255,255,255,.0), transparent);
+      animation:shine 6s cubic-bezier(.16,.84,.44,1) infinite}
+    @keyframes shine{50%{transform:skewX(-20deg) translateX(0)} 100%{transform:skewX(-20deg) translateX(140%)}}
+
+    .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+
+    /* ---------- Cleanliness Meter ---------- */
+    .meter{position:fixed;left:50%;top:18px;transform:translateX(-50%);z-index:60;width:min(520px,80vw);height:8px;border-radius:999px;background:rgba(255,255,255,.7);box-shadow:0 10px 20px var(--shadow);overflow:hidden}
+    .meter-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--aqua),var(--mint));transition:width .2s ease}
+    .meter-label{position:absolute;right:12px;top:-24px;font-size:.75rem;font-weight:700;color:#135}
+
+    /* ---------- Sections ---------- */
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+    .card{background:#fff;border-radius:22px;padding:22px;box-shadow:0 20px 40px -18px var(--shadow);border:1px solid rgba(42,197,224,.12)}
+    .card h3{margin:.3rem 0 0.4rem;font-size:1.15rem}
+    .muted{color:#4d6a73}
+
+    /* Footer */
+    footer{background:linear-gradient(180deg,#fff,var(--sky));padding:50px 0 80px;border-top:1px solid rgba(42,197,224,.15)}
+    .copyright{color:#58747e;font-size:.9rem}
+
+    /* Responsive tweaks */
+    @media (max-width:700px){
+      .hero-cta{flex-direction:column}
+    }
   </style>
 </head>
 <body>
+  <!-- Progress / "Cleanliness" meter -->
+  <div class="meter" aria-hidden="true">
+    <div class="meter-fill" id="meterFill"></div>
+    <div class="meter-label" id="meterLabel">Freshness: 0%</div>
+  </div>
+
+  <!-- Nav -->
   <header>
-    <h1>Sterling Standard Cleaning LLC</h1>
-    <nav>
-      <a href="#services">Services</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="nav" id="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Sterling Standard Cleaning</span>
+      </div>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#process">Our Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
-  <section class="hero">
-    <div>
-      <h2>Bringing a <span style="color:#C4623A;">Sterling Standard</span> to Every Space</h2>
-      <p>Arizona’s freshest clean — proudly serving Gilbert, Chandler, and Mesa with reliable residential and rental-turnover cleaning.</p>
-    </div>
-    <div class="card">
-      <h3>Why Choose Us</h3>
-      <ul>
-        <li>Licensed & Insured</li>
-        <li>Same-Day Turnaround</li>
-        <li>Airbnb & VRBO Ready</li>
-        <li>Eco-Friendly Options</li>
-      </ul>
-    </div>
-  </section>
-  <section id="services" class="section">
-    <h2>Services</h2>
-    <div class="card">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.</p>
-    </div>
-  </section>
-  <section id="contact" class="section">
-    <h2>Contact Us</h2>
-    <div class="card">
-      <p>Email: hello@sterlingstandardcleaning.com</p>
-      <p>Phone: (480) 000-0000</p>
+
+  <!-- Dirt overlay (cleans as you scroll) -->
+  <div class="dirtOverlay" aria-hidden="true" id="dirtOverlay"></div>
+
+  <!-- Parallax Hero -->
+  <section class="hero" id="top">
+    <div class="layer hero-bg" data-speed="0.15"></div>
+    <div class="layer bubbles" data-speed="0.35"></div>
+    <div class="layer grime" id="grime" data-speed="0.05"></div>
+    <div class="content container">
+      <div class="eyebrow">Meticulous • Reliable • Sterling Clean</div>
+      <h1 class="title">
+        Welcome to <span class="shine">Sterling Standard Cleaning LLC</span>
+      </h1>
+      <p class="muted" style="font-size:1.1rem;max-width:720px;margin:0 auto 6px">
+        Residential & commercial cleaning in the East Valley. We make spaces sparkle — safely, thoroughly, and on your schedule.
+      </p>
+      <div class="hero-cta">
+        <a class="btn" href="#contact">Get a Free Quote</a>
+        <a class="btn outline" href="#services">Explore Services</a>
+      </div>
     </div>
   </section>
+
+  <!-- Services -->
+  <section id="services" class="container">
+    <h2 style="font-family:Playfair Display,serif;font-size:2.2rem;margin:0 0 18px">What we clean</h2>
+    <p class="muted" style="max-width:750px">Every visit follows a detailed checklist and eco-conscious product selection. Choose a package or mix & match for your space.</p>
+
+    <div class="cards" style="margin-top:26px">
+      <article class="card">
+        <h3>Standard Home Clean</h3>
+        <p class="muted">Kitchen, baths, living areas, bedrooms — surfaces, mirrors, floors, dusting, and finishing touches for a hotel-fresh feel.</p>
+      </article>
+      <article class="card">
+        <h3>Deep Clean & Move-In/Out</h3>
+        <p class="muted">Baseboards, vents, inside appliances, grout attention, and high-touch sanitizing. Perfect for milestones and makeovers.</p>
+      </article>
+      <article class="card">
+        <h3>Office & Retail</h3>
+        <p class="muted">Quiet, reliable after-hours care. Desks, conference rooms, restrooms, break areas — polished and visitor-ready.</p>
+      </article>
+      <article class="card">
+        <h3>Add‑Ons</h3>
+        <p class="muted">Inside fridge/oven, windows, laundry reset, pet zones, eco-upgrade products, and more on request.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process">
+    <div class="container">
+      <h2 style="font-family:Playfair Display,serif;font-size:2.2rem;margin:0 0 18px">Our sterling process</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="check" style="display:flex;align-items:flex-start;gap:12px;margin:10px 0">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 7L9 18l-5-5" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div>
+              <h3>Walkthrough & Quote</h3>
+              <p class="muted">A quick call or walkthrough to understand your space and priorities. Clear, no-surprise pricing.</p>
+            </div>
+          </div>
+          <div class="check" style="display:flex;align-items:flex-start;gap:12px;margin:10px 0">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 7L9 18l-5-5" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div>
+              <h3>Custom Checklist</h3>
+              <p class="muted">We design a tailored checklist — from must-do basics to special requests — shared with you after booking.</p>
+            </div>
+          </div>
+          <div class="check" style="display:flex;align-items:flex-start;gap:12px;margin:10px 0">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 7L9 18l-5-5" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div>
+              <h3>Sparkle & Shine</h3>
+              <p class="muted">We clean systematically — top to bottom, left to right — finishing with a signature shine pass.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Eco & Safety First</h3>
+          <ul class="muted" style="padding-left:18px;line-height:1.7">
+            <li>Kid & pet‑friendly options</li>
+            <li>Microfiber & HEPA attention</li>
+            <li>Cross‑contamination controls</li>
+            <li>Licensed & insured</li>
+          </ul>
+          <a class="btn" href="#contact" style="margin-top:8px">Request pricing</a>
+        </div>
+
+        <div class="card">
+          <h3>Service Area</h3>
+          <p class="muted">East Valley: Gilbert, Chandler, Mesa, Tempe, Queen Creek, and nearby. Ask about your area!</p>
+          <h3 style="margin-top:14px">Hours</h3>
+          <p class="muted">Mon–Sat • 8am–6pm • Flexible scheduling</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA strip -->
+  <section style="padding:40px 0">
+    <div class="container" style="background:linear-gradient(90deg, var(--aqua), var(--mint));border-radius:24px;padding:22px 26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 20px 40px -18px var(--shadow)">
+      <div>
+        <h3 style="margin:0 0 6px">Ready for that sterling feeling?</h3>
+        <p class="muted" style="margin:0">Quick quotes, flexible scheduling, and a spotless finish.</p>
+      </div>
+      <a class="btn" href="#contact" style="background:#001418;color:#e6fbff">Book a walkthrough</a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="container">
+    <h2 style="font-family:Playfair Display,serif;font-size:2.2rem;margin:0 0 18px">Get your free quote</h2>
+    <p class="muted" style="max-width:740px;margin-bottom:18px">Tell us about your space and preferred days/times. We typically reply within one business day.</p>
+
+    <form class="card" style="display:grid;gap:14px" onsubmit="event.preventDefault(); window.location.href = contactHref();">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <input required placeholder="Your name" id="name" style="padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,.12)"/>
+        <input required type="email" placeholder="Email" id="email" style="padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,.12)"/>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <input placeholder="Phone (optional)" id="phone" style="padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,.12)"/>
+        <input placeholder="City" id="city" style="padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,.12)"/>
+      </div>
+      <select id="service" style="padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,.12)">
+        <option value="Standard Home Clean">Standard Home Clean</option>
+        <option value="Deep Clean / Move-In-Out">Deep Clean / Move‑In‑Out</option>
+        <option value="Office / Retail">Office / Retail</option>
+        <option value="Custom">Custom</option>
+      </select>
+      <textarea id="message" rows="4" placeholder="Tell us about your space, rooms, priorities, and preferred days/times." style="padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,.12)"></textarea>
+      <button class="btn" type="submit">Send request</button>
+      <small class="muted">This opens your email app with the details pre‑filled. You can change the address later in the code.</small>
+    </form>
+  </section>
+
   <footer>
-    <p>© 2025 Sterling Standard Cleaning LLC. All rights reserved.</p>
+    <div class="container" style="display:grid;gap:12px;justify-items:center;text-align:center">
+      <div class="brand"><div class="logo"></div><span>Sterling Standard Cleaning LLC</span></div>
+      <div class="muted">Gilbert • Chandler • Mesa • Tempe • Queen Creek</div>
+      <div class="muted">Call/Text: <a href="tel:+1-480-555-0199">(480) 555‑0199</a> • Email: <a href="mailto:rachael@sterlingstandardcleaning.com">rachael@sterlingstandardcleaning.com</a></div>
+      <div class="copyright">© <span id="year"></span> Sterling Standard Cleaning LLC. All rights reserved.</div>
+    </div>
   </footer>
+
+  <script>
+    // ---------- Parallax & Cleanliness Logic ----------
+    const layers = [...document.querySelectorAll('[data-speed]')];
+    const grime = document.getElementById('grime');
+    const nav = document.getElementById('nav');
+    const meterFill = document.getElementById('meterFill');
+    const meterLabel = document.getElementById('meterLabel');
+    const dirtOverlay = document.getElementById('dirtOverlay');
+
+    const clamp = (n,min,max)=>Math.max(min,Math.min(max,n));
+
+    function onScroll(){
+      const y = window.scrollY;
+      const docH = document.body.scrollHeight - window.innerHeight;
+      const progress = clamp(y / (docH || 1), 0, 1);
+
+      // Parallax transform
+      layers.forEach(el=>{
+        const speed = parseFloat(el.dataset.speed) || 0;
+        el.style.transform = `translateY(${y * speed * -0.3}px)`;
+      });
+
+      // Grime fades as you scroll — feels cleaner
+      grime.style.opacity = String(1 - progress);
+
+      // Bottom dirt overlay recedes each viewport height scrolled
+      const viewport = window.innerHeight;
+      const local = Math.min(y / viewport, 1); // 0 -> 1 over one screen
+      dirtOverlay.style.opacity = String(1 - local);
+      dirtOverlay.style.height = `${45 - (local*45)}vh`;
+
+      // Nav background change
+      nav.classList.toggle('scrolled', y > 12);
+
+      // Meter fill
+      const pct = Math.round(progress*100);
+      meterFill.style.width = pct + '%';
+      meterLabel.textContent = `Freshness: ${pct}%`;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+
+    // ---------- Contact mail helper ----------
+    const CONTACT_EMAIL = 'rachael@sterlingstandardcleaning.com';
+    function contactHref(){
+      const name = encodeURIComponent(document.getElementById('name').value.trim());
+      const email = encodeURIComponent(document.getElementById('email').value.trim());
+      const phone = encodeURIComponent(document.getElementById('phone').value.trim());
+      const city = encodeURIComponent(document.getElementById('city').value.trim());
+      const service = encodeURIComponent(document.getElementById('service').value);
+      const msg = encodeURIComponent(document.getElementById('message').value.trim());
+
+      const subject = encodeURIComponent(`Quote request — ${service} — ${name}`);
+      const body = encodeURIComponent(
+`Name: ${decodeURIComponent(name)}
+Email: ${decodeURIComponent(email)}
+Phone: ${decodeURIComponent(phone)}
+City: ${decodeURIComponent(city)}
+Service: ${decodeURIComponent(service)}
+
+Details:
+${decodeURIComponent(msg)}
+`);
+      return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    }
+
+    // ---------- Year ----------
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
-
